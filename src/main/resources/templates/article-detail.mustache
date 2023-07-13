@@ -1,0 +1,30 @@
+{{>common/header}}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('https://codepresso-online-platform-public.s3.ap-northeast-2.amazonaws.com/java-web/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{article.title}}</h1>
+                    <span class="meta"> Posted by {{article.username}} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4" style="min-height: 400px">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center border-bottom pb-5">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>{{article.content}}</p>
+                <input type="hidden" id="post-id" value="{{article.id}}">
+                <div class="edit_btns">
+                    <button><a href="/articles/{{id}}/edit">수정</a></button>
+                    <button id="post-delete-button">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+{{>common/footer}}

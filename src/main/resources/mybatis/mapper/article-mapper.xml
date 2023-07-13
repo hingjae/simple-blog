@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.honey.simpleblog.mapper.ArticleMapper">
+
+    <resultMap id="ArticleResultMap" type="Article">
+        <id property="id" column="id"></id>
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="username" column="username" />
+        <result property="createdAt" column="created_at" />
+    </resultMap>
+
+    <select id="findAll" resultMap="ArticleResultMap">
+        select *
+        from article
+        order by id desc;
+    </select>
+
+    <select id="findByPage" resultMap="ArticleResultMap">
+        select *
+        from article
+        order by id desc
+        limit #{limit} offset #{offset}
+    </select>
+
+    <select id="findById" resultMap="ArticleResultMap">
+        select *
+        from article
+        where id=#{id};
+    </select>
+
+    <insert id="save">
+        insert into article(title, content, username, created_at)
+        values (#{article.title}, #{article.content}, #{article.username}, #{article.createdAt});
+    </insert>
+
+    <update id="update">
+        update article
+        set title=#{article.title}, content=#{article.content}
+        where id=#{article.id}
+    </update>
+</mapper>

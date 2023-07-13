@@ -1,0 +1,9 @@
+insert into article (title, content, username, created_at) values ('hello world', 'hello honey', 'honey', '2023-07-13 15:00:00');
+insert into article (title, content, username, created_at) values ('hello spring', 'hello batis', 'chan', '2023-07-13 15:30:00');
+insert into article (title, content, username, created_at) values ('hello java', 'hello batis', 'chan', '2023-07-13 10:00:00');
+insert into article (title, content, username, created_at) values ('hello honey', 'hello batis', 'chan', '2023-07-13 11:00:00');
+insert into article (title, content, username, created_at) values ('hello jpa', 'hello batis', 'chan', '2023-07-13 12:00:00');
+insert into article (title, content, username, created_at) values ('hello mysql', 'hello batis', 'chan', '2023-07-13 07:00:00');
+insert into article (title, content, username, created_at) values ('hello security', 'hello batis', 'chan', '2023-07-13 08:00:00');
+insert into article (title, content, username, created_at) values ('hello docker', 'hello batis', 'chan', '2023-07-13 09:00:00');
+insert into article (title, content, username, created_at) values ('hello aws', 'hello batis', 'chan', '2023-07-13 06:00:00');
