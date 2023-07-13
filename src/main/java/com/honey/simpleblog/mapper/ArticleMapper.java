@@ -17,4 +17,6 @@ public interface ArticleMapper {
     Integer save(@Param("article") Article article); // 리턴 값은 DB 테이블에 영향받은 row의 수
 
     Integer update(@Param("article") Article article);
+
+    Integer delete(@Param("id") Long id);
 }

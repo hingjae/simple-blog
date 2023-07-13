@@ -37,4 +37,10 @@ public class ArticleApiController {
         articleService.updateArticle(articleDto);
         return "success";
     }
+
+    @DeleteMapping
+    public String deleteArticle(@RequestParam("id") Long articleId) {
+        articleService.deleteArticle(articleId);
+        return "success";
+    }
 }

@@ -41,4 +41,9 @@
         set title=#{article.title}, content=#{article.content}
         where id=#{article.id}
     </update>
+
+    <delete id="delete">
+        delete from article
+        where id=#{id}
+    </delete>
 </mapper>

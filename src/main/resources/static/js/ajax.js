@@ -60,9 +60,23 @@ $(function () {
             contentType: "application/json"
         })
         .done(function () {
-            console.log(("Article update success!"))
+            console.log(("Article update success!"));
             window.location.href = "/articles/" + id;
         })
+    });
+
+    $("#post-delete-button").click(function () {
+        let id = $("#post-id").val();
+
+        $.ajax({
+            method: "DELETE",
+            url: "/api/articles",
+            data: {"id": id},
+        })
+        .done(function () {
+            console.log("Article delete success!");
+            window.location.href = "/";
+        });
     });
 
     $(".comment-edit").hide();

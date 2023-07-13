@@ -44,4 +44,9 @@ public class ArticleService {
         Integer result = articleMapper.update(articleDto.toEntity(localDateTime.now()));
         return result == 1;
     }
+
+    public boolean deleteArticle(Long articleId) {
+        Integer result = articleMapper.delete(articleId);
+        return result == 1;
+    }
 }
