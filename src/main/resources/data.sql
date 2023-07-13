@@ -1,9 +1,9 @@
-insert into article (title, content, username, created_at) values ('hello world', 'hello honey', 'honey', '2023-07-13 15:00:00');
-insert into article (title, content, username, created_at) values ('hello spring', 'hello batis', 'chan', '2023-07-13 15:30:00');
-insert into article (title, content, username, created_at) values ('hello java', 'hello batis', 'chan', '2023-07-13 10:00:00');
-insert into article (title, content, username, created_at) values ('hello honey', 'hello batis', 'chan', '2023-07-13 11:00:00');
-insert into article (title, content, username, created_at) values ('hello jpa', 'hello batis', 'chan', '2023-07-13 12:00:00');
-insert into article (title, content, username, created_at) values ('hello mysql', 'hello batis', 'chan', '2023-07-13 07:00:00');
-insert into article (title, content, username, created_at) values ('hello security', 'hello batis', 'chan', '2023-07-13 08:00:00');
-insert into article (title, content, username, created_at) values ('hello docker', 'hello batis', 'chan', '2023-07-13 09:00:00');
-insert into article (title, content, username, created_at) values ('hello aws', 'hello batis', 'chan', '2023-07-13 06:00:00');
+insert into article (title, content, username, created_at) values ('title1', 'hello honey', 'honey1', '2023-07-13 15:00:00');
+insert into article (title, content, username, created_at) values ('title2', 'hello batis1', 'chan1', '2023-07-13 15:30:00');
+insert into article (title, content, username, created_at) values ('title3', 'hello batis2', 'chan2', '2023-07-13 10:00:00');
+insert into article (title, content, username, created_at) values ('title4', 'hello batis3', 'chan3', '2023-07-13 11:00:00');
+insert into article (title, content, username, created_at) values ('title5', 'hello batis4', 'chan4', '2023-07-13 12:00:00');
+insert into article (title, content, username, created_at) values ('title6', 'hello batis5', 'chan5', '2023-07-13 07:00:00');
+insert into article (title, content, username, created_at) values ('title7', 'hello batis6', 'chan3', '2023-07-13 08:00:00');
+insert into article (title, content, username, created_at) values ('title8', 'hello batis7', 'chan2', '2023-07-13 09:00:00');
+insert into article (title, content, username, created_at) values ('title9', 'hello batis8', 'chan1', '2023-07-13 06:00:00');
