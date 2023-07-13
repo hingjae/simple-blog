@@ -8,17 +8,17 @@ $(function () {
             data: {"page": next_page}
         })
         .done(function(response) {
-            for(var post of response) {
+            for(var article of response) {
                 $("#more-posts").append(
                     "<div class=\"post-preview\">" +
-                    "<a href=\"/articles/" + post.id + "\">" +
+                    "<a href=\"/articles/" + article.id + "\">" +
                     "<h2 class=\"post-title\">" +
-                    post.title +
+                    article.title +
                     "</h2>\n" +
                     "<h3 class=\"post-subtitle\">" +
-                    post.content +
+                    article.content +
                     "</h3></a><p class=\"post-meta\">Posted by " +
-                    post.name +
+                    article.username +
                     "</p></div><hr class=\"my-4\" />");
             }
         });

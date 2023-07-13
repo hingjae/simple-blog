@@ -4,6 +4,8 @@ import com.honey.simpleblog.dto.ArticleRequestDto;
 import com.honey.simpleblog.dto.ArticleResponseDto;
 import com.honey.simpleblog.service.ArticleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,21 +28,33 @@ public class ArticleApiController {
     }
 
     @PostMapping
-    public String createArticle(@RequestBody ArticleRequestDto articleDto) {
+    public ResponseEntity<String> createArticle(@RequestBody ArticleRequestDto articleDto) {
         articleDto.setUsername("honey");
-        articleService.saveArticle(articleDto);
-        return "success";
+        boolean result = articleService.saveArticle(articleDto);
+        if (result) {
+            return ResponseEntity.status(HttpStatus.OK).body("success");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
+        }
     }
 
     @PutMapping
-    public String updateArticle(@RequestBody ArticleRequestDto articleDto) {
-        articleService.updateArticle(articleDto);
-        return "success";
+    public ResponseEntity<String> updateArticle(@RequestBody ArticleRequestDto articleDto) {
+        boolean result = articleService.updateArticle(articleDto);
+        if (result) {
+            return ResponseEntity.status(HttpStatus.OK).body("success");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
+        }
     }
 
     @DeleteMapping
-    public String deleteArticle(@RequestParam("id") Long articleId) {
-        articleService.deleteArticle(articleId);
-        return "success";
+    public ResponseEntity<String> deleteArticle(@RequestParam("id") Long articleId) {
+        boolean result = articleService.deleteArticle(articleId);
+        if(result) {
+            return ResponseEntity.status(HttpStatus.OK).body("success");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("fail");
+        }
     }
 }
