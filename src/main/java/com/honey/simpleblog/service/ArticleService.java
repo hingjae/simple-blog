@@ -4,6 +4,7 @@ import com.honey.simpleblog.domain.Article;
 import com.honey.simpleblog.dto.ArticleDto;
 import com.honey.simpleblog.dto.ArticleRequestDto;
 import com.honey.simpleblog.dto.ArticleResponseDto;
+import com.honey.simpleblog.exception.ArticleNotFoundException;
 import com.honey.simpleblog.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,9 @@ public class ArticleService {
     }
 
     public ArticleResponseDto getArticle(Long articleId) {
-        return ArticleResponseDto.from(articleMapper.findById(articleId));
+        return ArticleResponseDto.from(
+                articleMapper.findById(articleId).orElseThrow(() -> new ArticleNotFoundException("존재하지 않는 id : " + articleId))
+        );
     }
 
     public boolean saveArticle(ArticleRequestDto articleRequestDto) {

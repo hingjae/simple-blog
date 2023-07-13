@@ -2,6 +2,7 @@ package com.honey.simpleblog.dto;
 
 import com.honey.simpleblog.domain.Article;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 public class ArticleResponseDto {

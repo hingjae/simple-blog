@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface ArticleMapper {
@@ -12,7 +13,7 @@ public interface ArticleMapper {
 
     List<Article> findByPage(@Param("limit") Integer limit, @Param("offset") Integer offset);
 
-    Article findById(@Param("id") Long id);
+    Optional<Article> findById(@Param("id") Long id);
 
     Integer save(@Param("article") Article article); // 리턴 값은 DB 테이블에 영향받은 row의 수
 

@@ -16,10 +16,18 @@ import java.util.List;
 public class ArticleApiController {
 
     private final ArticleService articleService;
+    private final static int FIXED_LIST_SIZE = 3;
 
+    /**
+     * <p>
+     *     ajax 요청을 받아 고정된 사이즈의 게시글 리스트를 비동기로 불러오는 메서드
+     * </p>
+     * @param page 현재 페이지이다
+     * @return 현재 페이지에서 고정된 사이즈의 게시글 리스트를 반환한다.
+     */
     @GetMapping
     public List<ArticleResponseDto> getArticleList(@RequestParam(defaultValue = "1") Integer page) {
-        return articleService.getArticleByPage(page, 3);
+        return articleService.getArticleByPage(page, FIXED_LIST_SIZE);
     }
 
     @GetMapping("/{id}")
