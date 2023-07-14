@@ -1,4 +1,5 @@
 drop table if exists article;
+drop table if exists user_account;
 
 create table article(
     id bigint primary key auto_increment,

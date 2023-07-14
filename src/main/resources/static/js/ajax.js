@@ -79,6 +79,27 @@ $(function () {
         });
     });
 
+    $("#signup-button").click(function () {
+        let id = $("#signup-id").val();
+        let password = $("#signup-password").val();
+        let name = $("#signup-name").val();
+
+        $.ajax({
+            method: "POST",
+            url: "/api/users/sign-up",
+            data: JSON.stringify({
+                "id": id,
+                "password": password,
+                "name": name
+            }),
+            contentType: "application/json"
+        })
+        .done(function () {
+            console.log("Post creation success!");
+            window.location.href = "/login";
+        });
+    })
+
     $(".comment-edit").hide();
 
     $(".comment-edit-form-button").click(function () {
