@@ -9,15 +9,15 @@ $(function () {
         })
         .done(function(response) {
             for(var article of response) {
+                var postSubtitle = "<h3 class=\"post-subtitle text-truncate\">" + article.content + "</h3>";
                 $("#more-posts").append(
                     "<div class=\"post-preview\">" +
                     "<a href=\"/articles/" + article.id + "\">" +
                     "<h2 class=\"post-title\">" +
                     article.title +
                     "</h2>\n" +
-                    "<h3 class=\"post-subtitle\">" +
-                    article.content +
-                    "</h3></a><p class=\"post-meta\">Posted by " +
+                    postSubtitle +
+                    "</a><p class=\"post-meta\">Posted by " +
                     article.username +
                     "</p></div><hr class=\"my-4\" />");
             }
