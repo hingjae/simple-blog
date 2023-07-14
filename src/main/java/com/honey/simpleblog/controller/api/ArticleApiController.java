@@ -19,10 +19,8 @@ public class ArticleApiController {
     private final static int FIXED_LIST_SIZE = 3;
 
     /**
-     * <p>
-     *     ajax 요청을 받아 고정된 사이즈의 게시글 리스트를 비동기로 불러오는 메서드
-     * </p>
-     * @param page 현재 페이지이다
+     * ajax 요청을 받아 고정된 사이즈의 게시글 리스트를 비동기로 불러오는 메서드
+     * @param page 현재 페이지
      * @return 현재 페이지에서 고정된 사이즈의 게시글 리스트를 반환한다.
      */
     @GetMapping
@@ -30,11 +28,21 @@ public class ArticleApiController {
         return articleService.getArticleByPage(page, FIXED_LIST_SIZE);
     }
 
+    /**
+     * article을 id로 조회
+     * @param articleId id
+     * @return ArticleDto
+     */
     @GetMapping("/{id}")
     public ArticleResponseDto getArticle(@PathVariable("id") Long articleId) {
         return articleService.getArticle(articleId);
     }
 
+    /**
+     * article 생성 메서드
+     * @param articleDto RequestBody로 요청.
+     * @return 결과 여부에 따라 상태메서드 반환
+     */
     @PostMapping
     public ResponseEntity<String> createArticle(@RequestBody ArticleRequestDto articleDto) {
         articleDto.setUsername("honey");
@@ -46,6 +54,11 @@ public class ArticleApiController {
         }
     }
 
+    /**
+     * article 업데이트 메서드
+     * @param articleDto RequestBody로 요청
+     * @return 결과 여부에 따라 상태메서드 반환
+     */
     @PutMapping
     public ResponseEntity<String> updateArticle(@RequestBody ArticleRequestDto articleDto) {
         boolean result = articleService.updateArticle(articleDto);
@@ -56,6 +69,11 @@ public class ArticleApiController {
         }
     }
 
+    /**
+     * article 삭제 메서드
+     * @param articleId 쿼리파라미터로 요청
+     * @return 결과 여부에 따라 상태메서드 반환
+     */
     @DeleteMapping
     public ResponseEntity<String> deleteArticle(@RequestParam("id") Long articleId) {
         boolean result = articleService.deleteArticle(articleId);

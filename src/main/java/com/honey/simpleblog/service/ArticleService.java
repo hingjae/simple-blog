@@ -1,6 +1,5 @@
 package com.honey.simpleblog.service;
 
-import com.honey.simpleblog.domain.Article;
 import com.honey.simpleblog.dto.ArticleDto;
 import com.honey.simpleblog.dto.ArticleRequestDto;
 import com.honey.simpleblog.dto.ArticleResponseDto;
