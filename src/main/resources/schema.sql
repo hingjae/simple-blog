@@ -7,3 +7,10 @@ create table article(
     username varchar(100) not null,
     created_at datetime not null
 );
+
+create table user_account (
+    login_id varchar(50) not null,
+    password varchar(50),
+    name varchar(20),
+    primary key (login_id)
+);
