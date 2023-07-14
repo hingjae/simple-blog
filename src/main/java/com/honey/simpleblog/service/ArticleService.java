@@ -38,12 +38,12 @@ public class ArticleService {
     }
 
     public boolean saveArticle(ArticleRequestDto articleRequestDto) {
-        Integer result = articleMapper.save(articleRequestDto.toEntity(localDateTime.now()));
+        Integer result = articleMapper.save(articleRequestDto.toDomain(localDateTime.now()));
         return result == 1;
     }
 
     public boolean updateArticle(ArticleRequestDto articleDto) {
-        Integer result = articleMapper.update(articleDto.toEntity(localDateTime.now()));
+        Integer result = articleMapper.update(articleDto.toDomain(localDateTime.now()));
         return result == 1;
     }
 

@@ -32,7 +32,7 @@ public class ArticleDto {
         return ArticleDto.of(entity.getId(), entity.getTitle(), entity.getContent(), entity.getUsername(), entity.getCreatedAt());
     }
 
-    public Article toEntity() {
+    public Article toDomain() {
         return Article.of(id, title, content, username, createdAt);
     }
 }

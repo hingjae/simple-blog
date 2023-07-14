@@ -11,7 +11,7 @@ public class UserAccountRequestDto {
     private String password;
     private String name;
 
-    public UserAccount toEntity() {
+    public UserAccount toDomain() {
         return UserAccount.of(id, password, name);
     }
 }

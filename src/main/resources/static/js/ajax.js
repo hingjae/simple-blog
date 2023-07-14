@@ -1,4 +1,33 @@
 $(function () {
+
+    //loggedIn은 checkLoggedIn 함수의 결과 값으로 취급되며,
+    // 이 값을 콜백 함수 내에서 활용하여 로그인 여부에 따른 동작을 수행합니다.
+    // 로그인 여부에 따라 버튼을 숨기거나 보이게 하는 등의 로직을 처리하기 위해 loggedIn 값을 사용할 수 있습니다.
+    function checkLoggedIn(callback) {
+        $.ajax({
+            method: "GET",
+            url: "/api/users/login-check"
+        })
+        .done(function (response) {
+            callback(response.loggedIn) // 콜백함수는 비동기 작업이 완료된 이후 즉시 실행되는 함수이다.
+        })
+        .fail(function () {
+            callback(false);
+        });
+    }
+
+    checkLoggedIn(function (loggedIn) {
+        if (loggedIn) {
+            $("#logout-menu").show();
+            $("#login-menu").hide();
+            $("#signup-menu").hide();
+        } else {
+            $("#logout-menu").hide();
+            $("#login-menu").show();
+            $("#signup-menu").show();
+        }
+    });
+
     $("#more").click(function () {
         var next_page = parseInt($(this).attr("current-page")) + 1;
 
@@ -94,11 +123,47 @@ $(function () {
             }),
             contentType: "application/json"
         })
+            .done(function () {
+                console.log("User creation success!");
+                window.location.href = "/login";
+            })
+            .fail(function (response) {
+                let errorMessage = response.responseText;
+                alert(errorMessage);
+            });
+    });
+
+    $("#login-button").click(function () {
+        let id = $("#login-id").val();
+        let password = $("#login-password").val();
+
+        $.ajax({
+            method: "POST",
+            url: "/api/users/login",
+            data: JSON.stringify({
+                "id": id,
+                "password": password
+            }),
+            contentType: "application/json"
+        })
         .done(function () {
-            console.log("Post creation success!");
-            window.location.href = "/login";
+            window.location.href = "/";
+        })
+        .fail(function (response) {
+            let errorMessage = response.responseText;
+            alert(errorMessage);
         });
-    })
+    });
+
+    $("#logout-menu").click(function () {
+        $.ajax({
+            method: "POST",
+            url: "/api/users/logout"
+        })
+            .done(function () {
+                window.location.href = "/";
+            });
+    });
 
     $(".comment-edit").hide();
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Slf4j
 @ControllerAdvice
-public class ArticleErrorHandler {
+public class ArticleExceptionHandler {
 
     @ExceptionHandler(ArticleNotFoundException.class)
     public ResponseEntity<String> articleNotFoundException() {

@@ -16,7 +16,7 @@ import java.util.List;
 public class ArticleApiController {
 
     private final ArticleService articleService;
-    private final static int FIXED_LIST_SIZE = 3;
+    private final static int FIXED_LIST_SIZE = 20;
 
     /**
      * ajax 요청을 받아 고정된 사이즈의 게시글 리스트를 비동기로 불러오는 메서드

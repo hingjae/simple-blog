@@ -20,7 +20,7 @@ public class ArticleRequestDto {
         this.username = username;
     }
 
-    public Article toEntity(LocalDateTime now) {
+    public Article toDomain(LocalDateTime now) {
         return Article.of(id, title, content, username, now);
     }
 }
