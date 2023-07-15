@@ -77,12 +77,14 @@ public class ArticleApiController {
      * @return 결과 여부에 따라 상태메서드 반환
      */
     @DeleteMapping
-    public ResponseEntity<String> deleteArticle(@RequestParam("id") Long articleId) {
-        boolean result = articleService.deleteArticle(articleId);
+    public ResponseEntity<String> deleteArticle(
+            @RequestParam("id") Long articleId, @SessionAttribute("id") String userAccountId) {
+        boolean result = articleService.deleteArticle(articleId, userAccountId);
         if(result) {
             return ResponseEntity.status(HttpStatus.OK).body("success");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("fail");
         }
     }
+
 }

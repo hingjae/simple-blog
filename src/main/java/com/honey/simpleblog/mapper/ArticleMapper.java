@@ -19,4 +19,6 @@ public interface ArticleMapper {
     Integer update(@Param("article") Article article);
 
     Integer delete(@Param("id") Long id);
+
+    String  findUserAccountIdById(@Param("id") Long id);
 }

@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="findByLimitAndOffset" resultType="com.honey.simpleblog.dto.ArticleResponseDto">
-        select a.id, a.title, a.content, u.name
+        select a.id, u.login_id, a.title, a.content, u.name
         from article a
         join user_account u
         on a.user_account_id = u.login_id
@@ -22,7 +22,7 @@
     </select>
 
     <select id="findById" resultType="com.honey.simpleblog.dto.ArticleResponseDto">
-        select a.id, a.title, a.content, u.name
+        select a.id, u.login_id, a.title, a.content, u.name
         from article a
         join user_account u
         on a.user_account_id = u.login_id
@@ -33,6 +33,12 @@
         insert into article(user_account_id, title, content, created_at)
         values (#{article.userAccountId}, #{article.title}, #{article.content}, #{article.createdAt});
     </insert>
+
+    <select id="findUserAccountIdById" resultType="java.lang.String">
+        select a.user_account_id
+        from Article a
+        where a.id = #{id}
+    </select>
 
     <update id="update">
         update article

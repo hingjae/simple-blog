@@ -1,8 +1,11 @@
 package com.honey.simpleblog.service;
 
+import com.honey.simpleblog.domain.Article;
+import com.honey.simpleblog.domain.UserAccount;
 import com.honey.simpleblog.dto.ArticleRequestDto;
 import com.honey.simpleblog.dto.ArticleResponseDto;
 import com.honey.simpleblog.exception.ArticleNotFoundException;
+import com.honey.simpleblog.exception.MisMatchedUserAccountIdException;
 import com.honey.simpleblog.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,11 +35,19 @@ public class ArticleService {
     }
 
     public boolean updateArticle(ArticleRequestDto articleDto, String userAccountId) {
+        String findUserAccountId = articleMapper.findUserAccountIdById(articleDto.getId());
+        if (!findUserAccountId.equals(userAccountId)) {
+            throw new MisMatchedUserAccountIdException("userAccountId 불일치 : " + userAccountId);
+        }
         Integer result = articleMapper.update(articleDto.toDomain(userAccountId, localDateTime.now()));
         return result == 1;
     }
 
-    public boolean deleteArticle(Long articleId) {
+    public boolean deleteArticle(Long articleId, String userAccountId) {
+        String findUserAccountId = articleMapper.findUserAccountIdById(articleId);
+        if (!findUserAccountId.equals(userAccountId)) {
+            throw new MisMatchedUserAccountIdException("userAccountId 불일치 : " + userAccountId);
+        }
         Integer result = articleMapper.delete(articleId);
         return result == 1;
     }
