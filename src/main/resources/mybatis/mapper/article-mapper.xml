@@ -12,28 +12,26 @@
         <result property="createdAt" column="created_at" />
     </resultMap>
 
-    <select id="findAll" resultMap="ArticleResultMap">
-        select *
-        from article
-        order by id desc;
-    </select>
-
-    <select id="findByPage" resultMap="ArticleResultMap">
-        select *
-        from article
+    <select id="findByLimitAndOffset" resultType="com.honey.simpleblog.dto.ArticleResponseDto">
+        select a.id, a.title, a.content, u.name
+        from article a
+        join user_account u
+        on a.user_account_id = u.login_id
         order by id desc
         limit #{limit} offset #{offset}
     </select>
 
-    <select id="findById" resultMap="ArticleResultMap">
-        select *
-        from article
-        where id=#{id};
+    <select id="findById" resultType="com.honey.simpleblog.dto.ArticleResponseDto">
+        select a.id, a.title, a.content, u.name
+        from article a
+        join user_account u
+        on a.user_account_id = u.login_id
+        where a.id = #{id}
     </select>
 
     <insert id="save">
-        insert into article(title, content, username, created_at)
-        values (#{article.title}, #{article.content}, #{article.username}, #{article.createdAt});
+        insert into article(user_account_id, title, content, created_at)
+        values (#{article.userAccountId}, #{article.title}, #{article.content}, #{article.createdAt});
     </insert>
 
     <update id="update">

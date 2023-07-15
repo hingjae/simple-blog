@@ -9,25 +9,25 @@ import java.time.LocalDateTime;
 @Getter
 public class Article {
     private Long id;
+    private String userAccountId;
     private String title;
     private String content;
-    private String username;
     private LocalDateTime createdAt;
 
-    private Article(Long id, String title, String content, String username, LocalDateTime createdAt) {
+    private Article(Long id, String userAccountId, String title, String content, LocalDateTime createdAt) {
         this.id = id;
+        this.userAccountId = userAccountId;
         this.title = title;
         this.content = content;
-        this.username = username;
         this.createdAt = createdAt;
     }
 
-    public static Article of(Long id, String title, String content, String username, LocalDateTime createdAt) {
-        return new Article(id, title, content, username, createdAt);
+    public static Article of(Long id, String userAccountId, String title, String content, LocalDateTime createdAt) {
+        return new Article(id, userAccountId, title, content, createdAt);
     }
 
-    public static Article of(String title, String content, String username, LocalDateTime createdAt) {
-        return Article.of(null, title, content, username, createdAt);
+    public static Article of(String userAccountId, String title, String content, LocalDateTime createdAt) {
+        return Article.of(null, userAccountId, title, content, createdAt);
     }
 
 }

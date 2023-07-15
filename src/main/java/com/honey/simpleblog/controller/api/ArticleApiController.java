@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequestMapping("/api/articles")
@@ -44,9 +45,9 @@ public class ArticleApiController {
      * @return 결과 여부에 따라 상태메서드 반환
      */
     @PostMapping
-    public ResponseEntity<String> createArticle(@RequestBody ArticleRequestDto articleDto) {
-        articleDto.setUsername("honey");
-        boolean result = articleService.saveArticle(articleDto);
+    public ResponseEntity<String> createArticle(
+            @RequestBody ArticleRequestDto articleDto, @SessionAttribute(name = "id", required = false) String userAccountId) {
+        boolean result = articleService.saveArticle(articleDto, userAccountId);
         if (result) {
             return ResponseEntity.status(HttpStatus.OK).body("success");
         } else {
@@ -60,8 +61,9 @@ public class ArticleApiController {
      * @return 결과 여부에 따라 상태메서드 반환
      */
     @PutMapping
-    public ResponseEntity<String> updateArticle(@RequestBody ArticleRequestDto articleDto) {
-        boolean result = articleService.updateArticle(articleDto);
+    public ResponseEntity<String> updateArticle(
+            @RequestBody ArticleRequestDto articleDto, @SessionAttribute("id") String userAccountId) {
+        boolean result = articleService.updateArticle(articleDto, userAccountId);
         if (result) {
             return ResponseEntity.status(HttpStatus.OK).body("success");
         } else {

@@ -1,26 +1,21 @@
 package com.honey.simpleblog.dto;
 
 import com.honey.simpleblog.domain.Article;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 public class ArticleRequestDto {
 
-    private Long id;
     private String title;
     private String content;
-    @Setter private String username;
 
 
-    private ArticleRequestDto(Long id, String title, String content, String username) {
-        this.id = id;
+    private ArticleRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
-        this.username = username;
     }
 
-    public Article toDomain(LocalDateTime now) {
-        return Article.of(id, title, content, username, now);
+    public Article toDomain(String userAccountId, LocalDateTime now) {
+        return Article.of(userAccountId, title, content, now);
     }
 }

@@ -32,6 +32,7 @@ public class UserApiController {
     public ResponseEntity login(@RequestBody UserAccountRequestDto dto, HttpServletRequest request) {
         userAccountService.loginUser(dto);
         HttpSession session = request.getSession(true);
+        session.setAttribute("id", dto.getId());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

@@ -30,7 +30,6 @@ $(function () {
 
     $("#more").click(function () {
         var next_page = parseInt($(this).attr("current-page")) + 1;
-
         $.ajax({
             method: "GET",
             url: "/api/articles",
@@ -57,7 +56,6 @@ $(function () {
     $("#create_button").click(function () {
         let title = $("#post-title").val();
         let content = $("#post-content").val();
-
         $.ajax({
             method: "POST",
             url: "/api/articles",
