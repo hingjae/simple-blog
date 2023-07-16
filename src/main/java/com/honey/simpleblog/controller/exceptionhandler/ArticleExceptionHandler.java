@@ -1,4 +1,4 @@
-package com.honey.simpleblog.controller;
+package com.honey.simpleblog.controller.exceptionhandler;
 
 import com.honey.simpleblog.exception.ArticleNotFoundException;
 import lombok.extern.slf4j.Slf4j;

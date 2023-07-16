@@ -1,6 +1,6 @@
 package com.honey.simpleblog.controller.api;
 
-import com.honey.simpleblog.dto.LoginCheckRequest;
+import com.honey.simpleblog.dto.LoginCheckRequestDto;
 import com.honey.simpleblog.dto.UserAccountRequestDto;
 import com.honey.simpleblog.service.UserAccountService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +18,11 @@ public class UserApiController {
 
     private final UserAccountService userAccountService;
 
+    /**
+     * 회원가입 로직 아이디 중복 검증 이후 DB에 회원 정보를 저장함.
+     * @param dto - id, password, name을 담은 객체
+     * @return 상태 코드 반환
+     */
     @PostMapping("/sign-up")
     public ResponseEntity<String> signUp(@RequestBody UserAccountRequestDto dto) {
         boolean result = userAccountService.signUpUser(dto);
@@ -49,7 +54,7 @@ public class UserApiController {
     public ResponseEntity loginCheck(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         boolean result = isSessionExists(session);
-        return new ResponseEntity<>(LoginCheckRequest.of(result), HttpStatus.OK);
+        return new ResponseEntity<>(LoginCheckRequestDto.of(result), HttpStatus.OK);
     }
 
     private boolean isSessionExists(HttpSession session) {

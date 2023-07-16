@@ -16,18 +16,62 @@
 <!-- Post Content-->
 <article class="mb-4" style="min-height: 400px">
     <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center border-bottom pb-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center pb-5">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="edit_btns">
                     <button onclick="history.back()">목록</button>
                 </div>
                 <p>{{article.content}}</p>
-                <input type="hidden" id="post-id" value="{{article.id}}">
-                <div class="edit_btns">
-                    {{#isMyArticle}}
+                <input type="hidden" id="article-id" value="{{article.id}}">
+                {{#isMyArticle}}
+                    <div class="edit_btns">
+
                         <button><a href="/articles/{{id}}/edit">수정</a></button>
                         <button id="post-delete-button">삭제</button>
-                    {{/isMyArticle}}
+
+                    </div>
+                {{/isMyArticle}}
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7 my-5">
+                <div class="form-floating">
+                    <input class="form-control text-sm" id="comment-content" type="text" placeholder="댓글 추가.." />
+                    <label style="font-size: 16px;" for="comment-content" class="text-sm">댓글 추가..</label>
+                </div>
+                <div class="comment_btn">
+                    <button id="comment-save-button">등록</button>
+                </div>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 pb-5 mt-5">
+                <div class="comment_title">댓글</div>
+
+                <div class="comment_text">
+                    <div class="etc">
+                        <div class="name">사용자 이름</div>
+                    </div>
+                    <p>
+                        댓글 내용
+                    </p>
+                    <div class="edit_btns">
+                        <button class="comment-edit-form-button">수정</button>
+                        <button class="comment-delete-button">삭제</button>
+                    </div>
+                    <!--수정 시-->
+                    <textarea class="edit comment-edit" cols="10" rows="10"
+                              placeholder="댓글을 입력해주세요"></textarea>
+                    <div class="save_btns comment-edit">
+                        <button class="comment-edit-cancel-button">취소</button>
+                        <button class="save comment-edit-button">저장하기</button>
+                    </div>
+                    <input type="hidden" class="comment-id" value="">
+                </div>
+
+
+
+                <div id="more-comments"></div>
+                <div class="d-flex justify-content-center mb-4">
+                    <a class="btn btn-primary text-uppercase" id="more-comment-button" current-comment-page="1">MORE comments</a>
                 </div>
             </div>
         </div>

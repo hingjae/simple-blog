@@ -72,7 +72,7 @@ $(function () {
     });
 
     $("#edit_button").click(function () {
-        let id = $("#edit-post-id").val();
+        let id = $("#edit-article-id").val();
         let title = $("#edit-post-title").val();
         let content = $("#edit-post-content").val();
 
@@ -93,7 +93,7 @@ $(function () {
     });
 
     $("#post-delete-button").click(function () {
-        let id = $("#post-id").val();
+        let id = $("#article-id").val();
 
         $.ajax({
             method: "DELETE",
@@ -161,6 +161,27 @@ $(function () {
             .done(function () {
                 window.location.href = "/";
             });
+    });
+
+    $("#comment-save-button").click(function () {
+        let articleId = $("#article-id").val();
+        let content = $("#comment-content").val();
+        $.ajax({
+            method: "POST",
+            url: "/api/articleComments",
+            data: JSON.stringify({
+                "articleId": articleId,
+                "content": content
+            }),
+            contentType: "application/json"
+        })
+        .done(function (response) {
+            window.location.reload();
+        })
+        .fail(function (response) {
+            let errorMessage = response.responseText;
+            alert(errorMessage);
+        });
     });
 
     $(".comment-edit").hide();

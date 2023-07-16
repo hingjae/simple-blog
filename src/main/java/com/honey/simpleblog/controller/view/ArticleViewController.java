@@ -1,4 +1,4 @@
-package com.honey.simpleblog.controller;
+package com.honey.simpleblog.controller.view;
 
 import com.honey.simpleblog.controller.api.ArticleApiController;
 import com.honey.simpleblog.dto.ArticleResponseDto;

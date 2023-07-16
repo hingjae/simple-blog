@@ -1,7 +1,5 @@
 package com.honey.simpleblog.service;
 
-import com.honey.simpleblog.domain.Article;
-import com.honey.simpleblog.domain.UserAccount;
 import com.honey.simpleblog.dto.ArticleRequestDto;
 import com.honey.simpleblog.dto.ArticleResponseDto;
 import com.honey.simpleblog.exception.ArticleNotFoundException;
@@ -9,10 +7,12 @@ import com.honey.simpleblog.exception.MisMatchedUserAccountIdException;
 import com.honey.simpleblog.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Transactional
 @RequiredArgsConstructor
 @Service
 public class ArticleService {
