@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ArticleExceptionHandler {
 
     @ExceptionHandler(ArticleNotFoundException.class)
-    public ResponseEntity<String> articleNotFoundException() {
-        return new ResponseEntity<>("Fail", HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> articleNotFoundException(ArticleNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

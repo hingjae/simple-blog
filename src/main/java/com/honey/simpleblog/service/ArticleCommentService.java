@@ -1,6 +1,7 @@
 package com.honey.simpleblog.service;
 
 import com.honey.simpleblog.dto.ArticleCommentRequestDto;
+import com.honey.simpleblog.dto.ArticleCommentResponseDto;
 import com.honey.simpleblog.exception.CommentSaveFailedException;
 import com.honey.simpleblog.mapper.ArticleCommentMapper;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional
@@ -22,5 +24,9 @@ public class ArticleCommentService {
         if (result != 1) {
             throw new CommentSaveFailedException("댓글을 DB에 저장하는데 실패했습니다.");
         }
+    }
+
+    public List<ArticleCommentResponseDto> getArticleComments(Long articleId) {
+        return articleCommentMapper.findByArticleId(articleId);
     }
 }

@@ -22,7 +22,7 @@ public class UserExceptionHandler {
     }
 
     @ExceptionHandler(SessionLoginIdNotFoundException.class)
-    public ResponseEntity<String> sessionLoginIdNotFoundException(DuplicateKeyException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> sessionLoginIdNotFoundException(SessionLoginIdNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }

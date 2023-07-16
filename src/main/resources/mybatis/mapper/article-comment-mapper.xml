@@ -4,8 +4,23 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.honey.simpleblog.mapper.ArticleCommentMapper">
 
+    <resultMap id="articleCommentResultMap" type="com.honey.simpleblog.dto.ArticleCommentResponseDto">
+        <id property="id" column="id" />
+        <result property="username" column="name" />
+        <result property="content" column="content" />
+        <result property="createdAt" column="created_at" />
+    </resultMap>
+
     <insert id="save">
         insert into article_comment(article_id, user_account_id, content, created_at)
         values (#{articleComment.articleId}, #{articleComment.userAccountId}, #{articleComment.content}, #{articleComment.createdAt});
     </insert>
+
+    <select id="findByArticleId" resultMap="articleCommentResultMap">
+        select ac.id, u.name, ac.content, ac.created_at
+        from article_comment ac
+        join user_account u on ac.user_account_id = u.login_id
+        where ac.article_id = #{articleId}
+        order by created_at desc
+    </select>
 </mapper>

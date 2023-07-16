@@ -21,10 +21,12 @@ $(function () {
             $("#logout-menu").show();
             $("#login-menu").hide();
             $("#signup-menu").hide();
+            $("#write-menu").show();
         } else {
             $("#logout-menu").hide();
             $("#login-menu").show();
             $("#signup-menu").show();
+            $("#write-menu").hide();
         }
     });
 
@@ -168,7 +170,7 @@ $(function () {
         let content = $("#comment-content").val();
         $.ajax({
             method: "POST",
-            url: "/api/articleComments",
+            url: "/api/articles/" + articleId + "/articleComments",
             data: JSON.stringify({
                 "articleId": articleId,
                 "content": content
