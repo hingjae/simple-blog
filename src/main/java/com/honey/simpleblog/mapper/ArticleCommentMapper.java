@@ -13,4 +13,6 @@ public interface ArticleCommentMapper {
     Integer save(@Param("articleComment") ArticleComment articleComment);
 
     List<ArticleCommentResponseDto> findByArticleId(@Param("articleId") Long articleId);
+
+    Integer deleteByIdAndUserAccountId(@Param("id") Long articleCommentId, @Param("userAccountId") String userAccountId);
 }

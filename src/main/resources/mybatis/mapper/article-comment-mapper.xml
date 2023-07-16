@@ -6,6 +6,7 @@
 
     <resultMap id="articleCommentResultMap" type="com.honey.simpleblog.dto.ArticleCommentResponseDto">
         <id property="id" column="id" />
+        <result property="userAccountId" column="user_account_id"/>
         <result property="username" column="name" />
         <result property="content" column="content" />
         <result property="createdAt" column="created_at" />
@@ -17,10 +18,15 @@
     </insert>
 
     <select id="findByArticleId" resultMap="articleCommentResultMap">
-        select ac.id, u.name, ac.content, ac.created_at
+        select ac.id, ac.user_account_id, u.name, ac.content, ac.created_at
         from article_comment ac
         join user_account u on ac.user_account_id = u.login_id
         where ac.article_id = #{articleId}
         order by created_at desc
     </select>
+
+    <delete id="deleteByIdAndUserAccountId">
+        delete from article_comment ac
+        where ac.id = #{id} and ac.user_account_id = #{userAccountId}
+    </delete>
 </mapper>

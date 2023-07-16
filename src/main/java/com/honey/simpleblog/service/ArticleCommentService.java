@@ -2,6 +2,7 @@ package com.honey.simpleblog.service;
 
 import com.honey.simpleblog.dto.ArticleCommentRequestDto;
 import com.honey.simpleblog.dto.ArticleCommentResponseDto;
+import com.honey.simpleblog.exception.CommentDeleteFailedException;
 import com.honey.simpleblog.exception.CommentSaveFailedException;
 import com.honey.simpleblog.mapper.ArticleCommentMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,12 @@ public class ArticleCommentService {
 
     public List<ArticleCommentResponseDto> getArticleComments(Long articleId) {
         return articleCommentMapper.findByArticleId(articleId);
+    }
+
+    public void deleteArticleComment(Long articleCommentId, String userAccountId) {
+        Integer result = articleCommentMapper.deleteByIdAndUserAccountId(articleCommentId, userAccountId);
+        if (result != 1) {
+            throw new CommentDeleteFailedException("댓글을 삭제하는 데 실패했습니다.");
+        }
     }
 }

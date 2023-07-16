@@ -54,18 +54,22 @@
                             {{content}}
                         </p>
                         <p>{{createdAt}}</p>
-                        <div class="edit_btns">
-                            <button class="comment-edit-form-button">수정</button>
-                            <button class="comment-delete-button">삭제</button>
-                        </div>
-                        <!--수정 시-->
+                        {{#isMyComment}}
+                            <div class="edit_btns">
+                                <!--<button class="comment-edit-form-button">수정</button>-->
+                                <button class="comment-delete-button">삭제</button>
+                            </div>
+                        {{/isMyComment}}
+                        <!--수정 시
                         <textarea class="edit comment-edit" cols="10" rows="10"
                                   placeholder="댓글을 입력해주세요"></textarea>
                         <div class="save_btns comment-edit">
                             <button class="comment-edit-cancel-button">취소</button>
                             <button class="save comment-edit-button">저장하기</button>
                         </div>
-                        <input type="hidden" class="comment-id" value="">
+                        -->
+                        <input type="hidden" class="comment-id" value="{{id}}">
+                        <input type="hidden" class="user-account-id" value="{{userAccountId}}">
                     </div>
                 {{/comments}}
                 <div id="more-comments"></div>

@@ -26,13 +26,16 @@ public class ArticleViewController {
 
     @GetMapping("/{id}")
     public String getArticle(
-            @SessionAttribute(name = "id", required = false) String userAccountId,
+            @SessionAttribute(name = "id", required = false) String myId,
             @PathVariable("id") Long articleId, Model model
     ) {
         ArticleResponseDto article = articleApiController.getArticle(articleId);
         List<ArticleCommentResponseDto> comments = articleCommentApiController.getArticleCommentList(articleId);
+        comments.stream()
+                .filter(comment -> comment.getUserAccountId().equals(myId))
+                .forEach(comment -> comment.setMyComment(true));
         model.addAttribute("article", article);
-        model.addAttribute("isMyArticle", article.getUserAccountId().equals(userAccountId));
+        model.addAttribute("isMyArticle", article.getUserAccountId().equals(myId));
         model.addAttribute("comments", comments);
         return "article-detail";
     }

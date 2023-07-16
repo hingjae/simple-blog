@@ -186,6 +186,27 @@ $(function () {
         });
     });
 
+    $(".comment-delete-button").click(function () {
+        var commentId = $(this).closest(".comment_text").find(".comment-id").val();
+        var userAccountId = $(this).closest(".comment_text").find(".user-account-id").val();
+        $.ajax({
+            method: "DELETE",
+            url: "/api/articles/{articleId}/articleComments",
+            data: JSON.stringify({
+                "commentId": commentId,
+                "userAccountId": userAccountId
+            }),
+            contentType: "application/json"
+        })
+        .done(function () {
+            window.location.reload();
+        })
+        .fail(function (response) {
+            let errorMessage = response.responseText;
+            alert(errorMessage);
+        });
+    });
+
     $(".comment-edit").hide();
 
     $(".comment-edit-form-button").click(function () {

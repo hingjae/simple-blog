@@ -2,6 +2,7 @@ package com.honey.simpleblog.controller.api;
 
 import com.honey.simpleblog.dto.ArticleCommentRequestDto;
 import com.honey.simpleblog.dto.ArticleCommentResponseDto;
+import com.honey.simpleblog.dto.DeleteArticleCommentRequestDto;
 import com.honey.simpleblog.exception.SessionLoginIdNotFoundException;
 import com.honey.simpleblog.service.ArticleCommentService;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,13 @@ public class ArticleCommentApiController {
     @GetMapping
     public List<ArticleCommentResponseDto> getArticleCommentList(@PathVariable("articleId") Long articleId) {
         return articleCommentService.getArticleComments(articleId);
+    }
+
+    @DeleteMapping
+    public ResponseEntity deleteArticleComments(
+            @RequestBody DeleteArticleCommentRequestDto dto
+    ) {
+        articleCommentService.deleteArticleComment(dto.getCommentId(), dto.getUserAccountId());
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
