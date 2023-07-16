@@ -40,7 +40,7 @@ ALTER TABLE article
 
 ALTER TABLE article_comment
     ADD CONSTRAINT FK_article_comment_article
-        FOREIGN KEY (article_id) REFERENCES article (id);
+        FOREIGN KEY (article_id) REFERENCES article (id) on delete cascade ;
 
 ALTER TABLE article_comment
     ADD CONSTRAINT FK_article_comment_user_account
